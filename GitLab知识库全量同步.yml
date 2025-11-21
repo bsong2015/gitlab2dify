@@ -1,0 +1,819 @@
+app:
+  description: ''
+  icon: 🤖
+  icon_background: '#FFEAD5'
+  mode: workflow
+  name: GitLab知识库全量同步
+  use_icon_as_answer_icon: false
+dependencies: []
+kind: app
+version: 0.4.0
+workflow:
+  conversation_variables: []
+  environment_variables:
+  - description: ''
+    id: 462991dd-f5d5-40b2-a09d-c51e7f40cd52
+    name: DIFY_API_KEY
+    selector:
+    - env
+    - DIFY_API_KEY
+    value: ''
+    value_type: secret
+  - description: ''
+    id: c4811111-a6b4-4171-b25a-5feef03808fe
+    name: KNOWLEDGE_BASE_ID
+    selector:
+    - env
+    - KNOWLEDGE_BASE_ID
+    value: 9d21f828-a542-4060-9612-bf0893645e0f
+    value_type: string
+  - description: ''
+    id: 4f8b11ea-d4a8-45b7-89d0-32eca6d58061
+    name: DIFY_HOST
+    selector:
+    - env
+    - DIFY_HOST
+    value: http://10.99.0.202
+    value_type: string
+  - description: 允许同步的文件扩展名，用逗号分隔
+    id: e0b62e98-5140-4018-9b18-8857546c8a5b
+    name: ALLOWED_FILE_EXTENSIONS
+    selector:
+    - env
+    - ALLOWED_FILE_EXTENSIONS
+    value: .md,.markdown
+    value_type: string
+  - description: ''
+    id: e3107dab-7141-4ee3-8d44-ecddef539328
+    name: GITLAB_PRIVATE_TOKEN
+    selector:
+    - env
+    - GITLAB_PRIVATE_TOKEN
+    value: ''
+    value_type: secret
+  - description: 你的GitLab实例URL
+    id: 9b1a4f63-b3f7-41b3-9e04-05e5011d0bf2
+    name: GITLAB_HOST
+    selector:
+    - env
+    - GITLAB_HOST
+    value: http://10.99.0.202:8000/
+    value_type: string
+  features:
+    file_upload:
+      allowed_file_extensions:
+      - .JPG
+      - .JPEG
+      - .PNG
+      - .GIF
+      - .WEBP
+      - .SVG
+      allowed_file_types:
+      - image
+      allowed_file_upload_methods:
+      - local_file
+      - remote_url
+      enabled: false
+      fileUploadConfig:
+        audio_file_size_limit: 50
+        batch_count_limit: 5
+        file_size_limit: 15
+        image_file_size_limit: 10
+        video_file_size_limit: 100
+        workflow_file_upload_limit: 10
+      image:
+        enabled: false
+        number_limits: 3
+        transfer_methods:
+        - local_file
+        - remote_url
+      number_limits: 3
+    opening_statement: ''
+    retriever_resource:
+      enabled: true
+    sensitive_word_avoidance:
+      enabled: false
+    speech_to_text:
+      enabled: false
+    suggested_questions: []
+    suggested_questions_after_answer:
+      enabled: false
+    text_to_speech:
+      enabled: false
+      language: ''
+      voice: ''
+  graph:
+    edges:
+    - data:
+        isInLoop: false
+        sourceType: http-request
+        targetType: code
+      id: 1762420495727-source-1762420789275-target
+      source: '1762420495727'
+      sourceHandle: source
+      target: '1762420789275'
+      targetHandle: target
+      type: custom
+      zIndex: 0
+    - data:
+        isInLoop: false
+        sourceType: code
+        targetType: iteration
+      id: 1762420789275-source-1762421110286-target
+      source: '1762420789275'
+      sourceHandle: source
+      target: '1762421110286'
+      targetHandle: target
+      type: custom
+      zIndex: 0
+    - data:
+        isInIteration: true
+        isInLoop: false
+        iteration_id: '1762421110286'
+        sourceType: code
+        targetType: http-request
+      id: 1762423384411-source-1762422064174-target
+      source: '1762423384411'
+      sourceHandle: source
+      target: '1762422064174'
+      targetHandle: target
+      type: custom
+      zIndex: 1002
+    - data:
+        isInLoop: false
+        sourceType: start
+        targetType: http-request
+      id: 1762419870890-source-1762420495727-target
+      source: '1762419870890'
+      sourceHandle: source
+      target: '1762420495727'
+      targetHandle: target
+      type: custom
+      zIndex: 0
+    - data:
+        isInIteration: true
+        isInLoop: false
+        iteration_id: '1762421110286'
+        sourceType: iteration-start
+        targetType: code
+      id: 1762421110286start-source-1762494161570-target
+      source: 1762421110286start
+      sourceHandle: source
+      target: '1762494161570'
+      targetHandle: target
+      type: custom
+      zIndex: 1002
+    - data:
+        isInIteration: true
+        isInLoop: false
+        iteration_id: '1762421110286'
+        sourceType: code
+        targetType: code
+      id: 1762501518916-source-1762423384411-target
+      source: '1762501518916'
+      sourceHandle: source
+      target: '1762423384411'
+      targetHandle: target
+      type: custom
+      zIndex: 1002
+    - data:
+        isInIteration: true
+        isInLoop: false
+        iteration_id: '1762421110286'
+        sourceType: code
+        targetType: http-request
+      id: 1762494161570-source-1762502626824-target
+      source: '1762494161570'
+      sourceHandle: source
+      target: '1762502626824'
+      targetHandle: target
+      type: custom
+      zIndex: 1002
+    - data:
+        isInIteration: true
+        isInLoop: false
+        iteration_id: '1762421110286'
+        sourceType: http-request
+        targetType: code
+      id: 1762502626824-source-1762503687571-target
+      source: '1762502626824'
+      sourceHandle: source
+      target: '1762503687571'
+      targetHandle: target
+      type: custom
+      zIndex: 1002
+    - data:
+        isInIteration: true
+        isInLoop: false
+        iteration_id: '1762421110286'
+        sourceType: code
+        targetType: code
+      id: 1762503687571-source-1762501518916-target
+      source: '1762503687571'
+      sourceHandle: source
+      target: '1762501518916'
+      targetHandle: target
+      type: custom
+      zIndex: 1002
+    - data:
+        isInIteration: true
+        isInLoop: false
+        iteration_id: '1762421110286'
+        sourceType: http-request
+        targetType: code
+      id: 1762422064174-source-1762504962624-target
+      source: '1762422064174'
+      sourceHandle: source
+      target: '1762504962624'
+      targetHandle: target
+      type: custom
+      zIndex: 1002
+    - data:
+        isInIteration: false
+        isInLoop: false
+        sourceType: iteration
+        targetType: code
+      id: 1762421110286-source-1762505161514-target
+      source: '1762421110286'
+      sourceHandle: source
+      target: '1762505161514'
+      targetHandle: target
+      type: custom
+      zIndex: 0
+    - data:
+        isInIteration: false
+        isInLoop: false
+        sourceType: code
+        targetType: end
+      id: 1762505161514-source-1762481152145-target
+      source: '1762505161514'
+      sourceHandle: source
+      target: '1762481152145'
+      targetHandle: target
+      type: custom
+      zIndex: 0
+    nodes:
+    - data:
+        desc: 手动输入 GitLab 项目 ID 和分支名以开始全量同步
+        selected: false
+        title: 开始
+        type: start
+        variables:
+        - default: ''
+          hint: ''
+          label: branch_name
+          max_length: 256
+          options: []
+          placeholder: ''
+          required: true
+          type: text-input
+          variable: branch_name
+        - default: ''
+          hint: ''
+          label: project_id
+          max_length: 48
+          options: []
+          placeholder: ''
+          required: true
+          type: number
+          variable: project_id
+      height: 157
+      id: '1762419870890'
+      position:
+        x: 678
+        y: -90
+      positionAbsolute:
+        x: 678
+        y: -90
+      selected: false
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 241
+    - data:
+        authorization:
+          config:
+            api_key: '{{#env.GITLAB_PRIVATE_TOKEN#}}'
+            header: PRIVATE-TOKEN
+            type: custom
+          type: api-key
+        body:
+          data: []
+          type: none
+        desc: 获取所有文件
+        headers: ''
+        method: get
+        params: ''
+        retry_config:
+          max_retries: 3
+          retry_enabled: true
+          retry_interval: 100
+        selected: false
+        ssl_verify: false
+        timeout:
+          max_connect_timeout: 0
+          max_read_timeout: 0
+          max_write_timeout: 0
+        title: get_all_files
+        type: http-request
+        url: '{{#env.GITLAB_HOST#}}/api/v4/projects/{{#1762419870890.project_id#}}/repository/tree?recursive=true&ref={{#1762419870890.branch_name#}}&per_page=100'
+        variables: []
+      height: 238
+      id: '1762420495727'
+      position:
+        x: 1101
+        y: -90
+      positionAbsolute:
+        x: 1101
+        y: -90
+      selected: false
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 241
+    - data:
+        code: " function main({ files_raw, extensions }) {\n            const files\
+          \ = JSON.parse(files_raw);\n            const allowedExts = extensions.split(',').map(ext\
+          \ => ext.trim());\n            \n            const markdown_files = files\n\
+          \              .filter(file => file.type === 'blob')\n              .filter(file\
+          \ => allowedExts.some(ext => file.path.endsWith(ext)))\n              .map(file\
+          \ => file.path);\n\n            return { markdown_files };\n          }"
+        code_language: javascript
+        desc: 3. 过滤与分类文件
+        outputs:
+          markdown_files:
+            children: null
+            type: array[string]
+        selected: false
+        title: filter_and_categorize
+        type: code
+        variables:
+        - value_selector:
+          - '1762420495727'
+          - body
+          value_type: string
+          variable: files_raw
+        - value_selector:
+          - env
+          - ALLOWED_FILE_EXTENSIONS
+          value_type: string
+          variable: extensions
+      height: 79
+      id: '1762420789275'
+      position:
+        x: 1496
+        y: -90
+      positionAbsolute:
+        x: 1496
+        y: -90
+      selected: false
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 241
+    - data:
+        desc: 循环处理新增文件
+        error_handle_mode: terminated
+        height: 328
+        is_parallel: false
+        iterator_input_type: array[string]
+        iterator_selector:
+        - '1762420789275'
+        - markdown_files
+        output_selector:
+        - '1762504962624'
+        - increment
+        output_type: array[number]
+        parallel_nums: 10
+        selected: false
+        start_node_id: 1762421110286start
+        title: iterate_added_files
+        type: iteration
+        width: 3064
+      height: 328
+      id: '1762421110286'
+      position:
+        x: 2452.753994390675
+        y: -98.76584756697463
+      positionAbsolute:
+        x: 2452.753994390675
+        y: -98.76584756697463
+      selected: false
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 3064
+      zIndex: 1
+    - data:
+        desc: ''
+        isInIteration: true
+        selected: false
+        title: ''
+        type: iteration-start
+      draggable: false
+      height: 48
+      id: 1762421110286start
+      parentId: '1762421110286'
+      position:
+        x: 24
+        y: 68
+      positionAbsolute:
+        x: 2476.753994390675
+        y: -30.765847566974628
+      selectable: false
+      sourcePosition: right
+      targetPosition: left
+      type: custom-iteration-start
+      width: 44
+      zIndex: 1002
+    - data:
+        authorization:
+          config:
+            api_key: '{{#env.DIFY_API_KEY#}}'
+            type: bearer
+          type: api-key
+        body:
+          data:
+          - id: key-value-439
+            key: ''
+            type: text
+            value: '{{#1762423384411.api_payload#}}'
+          type: json
+        desc: 将文件数据发送到 Dify 并创建新文档
+        headers: ''
+        isInIteration: true
+        isInLoop: false
+        iteration_id: '1762421110286'
+        method: post
+        params: ''
+        retry_config:
+          max_retries: 3
+          retry_enabled: true
+          retry_interval: 100
+        selected: true
+        ssl_verify: true
+        timeout:
+          max_connect_timeout: 0
+          max_read_timeout: 0
+          max_write_timeout: 0
+        title: create_dify_document
+        type: http-request
+        url: '{{#env.DIFY_HOST#}}/v1/datasets/{{#env.KNOWLEDGE_BASE_ID#}}/document/create_by_text'
+        variables: []
+      height: 204
+      id: '1762422064174'
+      parentId: '1762421110286'
+      position:
+        x: 1779
+        y: 65
+      positionAbsolute:
+        x: 4231.753994390675
+        y: -33.76584756697463
+      selected: true
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 241
+      zIndex: 1002
+    - data:
+        code: "function main({ file_path, file_content }) {\n  // 构建 Dify API 请求体，不包含任何自定义元数据\n\
+          \  const payload = {\n    name: file_path, // 使用完整路径作为唯一名称\n    text: file_content,\n\
+          \    indexing_technique: 'high_quality',\n    process_rule: {\n      mode:\
+          \ 'automatic',\n      rules: {\n        pre_processing_rules: [\n      \
+          \    { id: 'remove_extra_spaces', enabled: true },\n          { id: 'remove_urls_emails',\
+          \ enabled: false }\n        ],\n        segmentation: {\n          separator:\
+          \ '\\n',\n          max_tokens: 800 // 根据您的需求调整\n        }\n      }\n  \
+          \  }\n  };\n\n  return {\n    api_payload: payload\n  };\n}"
+        code_language: javascript
+        isInIteration: true
+        isInLoop: false
+        iteration_id: '1762421110286'
+        outputs:
+          api_payload:
+            children: null
+            type: object
+        selected: false
+        title: prepare_create_payload
+        type: code
+        variables:
+        - value_selector:
+          - '1762421110286'
+          - item
+          value_type: string
+          variable: file_path
+        - value_selector:
+          - '1762501518916'
+          - clean_content
+          value_type: string
+          variable: file_content
+      height: 51
+      id: '1762423384411'
+      parentId: '1762421110286'
+      position:
+        x: 1419
+        y: 73
+      positionAbsolute:
+        x: 3871.753994390675
+        y: -25.765847566974628
+      selected: false
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 241
+      zIndex: 1002
+    - data:
+        outputs:
+        - value_selector:
+          - '1762505161514'
+          - summary
+          value_type: string
+          variable: summary
+        selected: false
+        title: 结束
+        type: end
+      height: 87
+      id: '1762481152145'
+      position:
+        x: 6464.851575304802
+        y: -107.21027275279329
+      positionAbsolute:
+        x: 6464.851575304802
+        y: -107.21027275279329
+      selected: false
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 241
+    - data:
+        code: "function main({ host, project_id, file_path, commit_sha }) {\n  //\
+          \ 在 Javascript 中对文件路径进行正确的 URL 编码\n  const encoded_path = encodeURIComponent(file_path);\n\
+          \  \n  // 使用模板字符串构建完整、干净的 URL\n  const final_url = `${host}api/v4/projects/${project_id}/repository/files/${encoded_path}?ref=${commit_sha}`;\n\
+          \  \n  console.log(\"构建完成的 URL:\", final_url);\n\n  return {\n    final_url:\
+          \ final_url\n  };\n}"
+        code_language: javascript
+        desc: 生成gitlab文件地址
+        isInIteration: true
+        isInLoop: false
+        iteration_id: '1762421110286'
+        outputs:
+          final_url:
+            children: null
+            type: string
+        selected: false
+        title: build_file_url
+        type: code
+        variables:
+        - value_selector:
+          - env
+          - GITLAB_HOST
+          value_type: string
+          variable: host
+        - value_selector:
+          - '1762419870890'
+          - project_id
+          value_type: number
+          variable: project_id
+        - value_selector:
+          - '1762421110286'
+          - item
+          value_type: string
+          variable: file_path
+        - value_selector:
+          - '1762419870890'
+          - branch_name
+          value_type: string
+          variable: commit_sha
+      height: 79
+      id: '1762494161570'
+      parentId: '1762421110286'
+      position:
+        x: 122
+        y: 66
+      positionAbsolute:
+        x: 2574.753994390675
+        y: -32.76584756697463
+      selected: false
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 241
+      zIndex: 1002
+    - data:
+        code: "\nfunction main({ raw_content }) {\n  // 正则表达式，用于匹配并捕获 YAML Front Matter\n\
+          \  const frontMatterRegex = /^---\\s*([\\s\\S]*?)\\s*---/;\n  const match\
+          \ = raw_content.match(frontMatterRegex);\n\n  let metadata = {};\n  let\
+          \ clean_content = raw_content;\n\n  if (match) {\n    // 如果匹配成功，match[1]\
+          \ 就是捕获到的 YAML 字符串\n    const yamlString = match[1];\n    // 移除原始内容中的 Front\
+          \ Matter 部分，得到纯净的 Markdown\n    clean_content = raw_content.replace(frontMatterRegex,\
+          \ '').trim();\n\n    // --- 手动解析简单的 YAML ---\n    // Dify 代码节点环境无内置库，我们手动解析\
+          \ key: value 格式\n    const lines = yamlString.split('\\n');\n    for (const\
+          \ line of lines) {\n      const parts = line.split(':');\n      if (parts.length\
+          \ >= 2) {\n        const key = parts[0].trim();\n        // 将剩余部分重新组合为值，并去除首尾的空格和引号\n\
+          \        const value = parts.slice(1).join(':').trim().replace(/^['\"]|['\"\
+          ]$/g, '');\n        if (key && value) {\n          metadata[key] = value;\n\
+          \        }\n      }\n    }\n  }\n\n  return {\n    metadata_object: metadata,\n\
+          \    clean_content: clean_content\n  };\n}"
+        code_language: javascript
+        desc: 解析元数据(Front Matter)
+        isInIteration: true
+        isInLoop: false
+        iteration_id: '1762421110286'
+        outputs:
+          clean_content:
+            children: null
+            type: string
+          metadata_object:
+            children: null
+            type: object
+        selected: false
+        title: parse_front_matter
+        type: code
+        variables:
+        - value_selector:
+          - '1762503687571'
+          - content
+          value_type: string
+          variable: raw_content
+      height: 79
+      id: '1762501518916'
+      parentId: '1762421110286'
+      position:
+        x: 1119
+        y: 73
+      positionAbsolute:
+        x: 3571.753994390675
+        y: -25.765847566974628
+      selected: false
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 241
+      zIndex: 1002
+    - data:
+        authorization:
+          config:
+            api_key: '{{#env.GITLAB_PRIVATE_TOKEN#}}'
+            header: PRIVATE-TOKEN
+            type: custom
+          type: api-key
+        body:
+          data: []
+          type: none
+        headers: ''
+        isInIteration: true
+        isInLoop: false
+        iteration_id: '1762421110286'
+        method: get
+        params: ''
+        retry_config:
+          max_retries: 3
+          retry_enabled: true
+          retry_interval: 100
+        selected: false
+        ssl_verify: false
+        timeout:
+          max_connect_timeout: 0
+          max_read_timeout: 0
+          max_write_timeout: 0
+        title: Request Comtent
+        type: http-request
+        url: '{{#1762494161570.final_url#}}'
+        variables: []
+      height: 123
+      id: '1762502626824'
+      parentId: '1762421110286'
+      position:
+        x: 423
+        y: 66
+      positionAbsolute:
+        x: 2875.753994390675
+        y: -32.76584756697463
+      selected: false
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 241
+      zIndex: 1002
+    - data:
+        code: "function main({ raw }) {\n    // 1. 解析 JSON 字符串\n    const parsed =\
+          \ JSON.parse(raw);\n    \n    // 2. 对 content 进行 Base64 解码，得到二进制字符串\n  \
+          \  const binaryString = atob(parsed.content);\n    \n    // 3. 将二进制字符串转换为字节数组\
+          \ (Uint8Array)\n    const len = binaryString.length;\n    const bytes =\
+          \ new Uint8Array(len);\n    for (let i = 0; i < len; i++) {\n        bytes[i]\
+          \ = binaryString.charCodeAt(i);\n    }\n    \n    // 4. 使用 TextDecoder 将字节数组按\
+          \ UTF-8 格式解码为字符串\n    const decoder = new TextDecoder('utf-8');\n    const\
+          \ decodedContent = decoder.decode(bytes);\n    \n    return {\n        content:\
+          \ decodedContent\n    };\n}"
+        code_language: javascript
+        isInIteration: true
+        isInLoop: false
+        iteration_id: '1762421110286'
+        outputs:
+          content:
+            children: null
+            type: string
+        selected: false
+        title: Parse File Content
+        type: code
+        variables:
+        - value_selector:
+          - '1762502626824'
+          - body
+          value_type: string
+          variable: raw
+      height: 51
+      id: '1762503687571'
+      parentId: '1762421110286'
+      position:
+        x: 819
+        y: 73
+      positionAbsolute:
+        x: 3271.753994390675
+        y: -25.765847566974628
+      selected: false
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 241
+      zIndex: 1002
+    - data:
+        code: "function main({ status_code }) {\n  // Dify API 成功创建的 status_code 通常是\
+          \ 200 或 201\n  // 我们将计数值初始化为 0\n  let count = 0;\n\n  if (status_code >=\
+          \ 200 && status_code < 300) {\n    // 如果状态码是 2xx，代表成功，我们将计数值设为 1\n    count\
+          \ = 1;\n    console.log(\"文档创建成功，计为 1\");\n  } else {\n    // 如果失败，计数值保持为\
+          \ 0\n    console.log(\"文档创建失败，计为 0\");\n  }\n\n  return {\n    // 输出一个计数值，成功为\
+          \ 1，失败为 0\n    increment: count\n  };\n}"
+        code_language: javascript
+        isInIteration: true
+        isInLoop: false
+        iteration_id: '1762421110286'
+        outputs:
+          increment:
+            children: null
+            type: number
+        selected: false
+        title: check_creation_success
+        type: code
+        variables:
+        - value_selector:
+          - '1762422064174'
+          - status_code
+          value_type: number
+          variable: status_code
+      height: 51
+      id: '1762504962624'
+      parentId: '1762421110286'
+      position:
+        x: 2507
+        y: 54
+      positionAbsolute:
+        x: 4959.753994390675
+        y: -44.76584756697463
+      selected: false
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 241
+      zIndex: 1002
+    - data:
+        code: "function main({ counts_array }) {\n  // 检查输入是否是一个有效的数组\n  if (!Array.isArray(counts_array))\
+          \ {\n    return { summary: \"无法进行汇总，输入不是一个数组。\" };\n  }\n  \n  // 使用 reduce\
+          \ 方法对数组中的所有计数值求和\n  const total_created = counts_array.reduce((sum, current)\
+          \ => sum + current, 0);\n\n  const summary_text = `本次同步完成，共成功创建了 ${total_created}\
+          \ 个新文件。`;\n  \n  console.log(summary_text);\n\n  return {\n    summary:\
+          \ summary_text,\n    total: total_created\n  };\n}"
+        code_language: javascript
+        outputs:
+          summary:
+            children: null
+            type: string
+          total:
+            children: null
+            type: number
+        selected: false
+        title: summarize_results
+        type: code
+        variables:
+        - value_selector:
+          - '1762421110286'
+          - output
+          value_type: array[number]
+          variable: counts_array
+      height: 51
+      id: '1762505161514'
+      position:
+        x: 6015.811891389503
+        y: -107.21027275279329
+      positionAbsolute:
+        x: 6015.811891389503
+        y: -107.21027275279329
+      selected: false
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 241
+    viewport:
+      x: -1966.993519171558
+      y: 277.6812827340125
+      zoom: 0.6299604894123334
+  rag_pipeline_variables: []

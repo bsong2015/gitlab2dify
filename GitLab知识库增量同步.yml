@@ -1,0 +1,2093 @@
+app:
+  description: ''
+  icon: 🤖
+  icon_background: '#FFEAD5'
+  mode: workflow
+  name: GitLab知识库增量同步
+  use_icon_as_answer_icon: false
+dependencies: []
+kind: app
+version: 0.4.0
+workflow:
+  conversation_variables: []
+  environment_variables:
+  - description: ''
+    id: 462991dd-f5d5-40b2-a09d-c51e7f40cd52
+    name: DIFY_API_KEY
+    selector:
+    - env
+    - DIFY_API_KEY
+    value: ''
+    value_type: secret
+  - description: ''
+    id: c4811111-a6b4-4171-b25a-5feef03808fe
+    name: KNOWLEDGE_BASE_ID
+    selector:
+    - env
+    - KNOWLEDGE_BASE_ID
+    value: 9d21f828-a542-4060-9612-bf0893645e0f
+    value_type: string
+  - description: ''
+    id: 4f8b11ea-d4a8-45b7-89d0-32eca6d58061
+    name: DIFY_HOST
+    selector:
+    - env
+    - DIFY_HOST
+    value: http://10.99.0.202
+    value_type: string
+  - description: 允许同步的文件扩展名，用逗号分隔
+    id: e0b62e98-5140-4018-9b18-8857546c8a5b
+    name: ALLOWED_FILE_EXTENSIONS
+    selector:
+    - env
+    - ALLOWED_FILE_EXTENSIONS
+    value: .md,.markdown
+    value_type: string
+  - description: ''
+    id: e3107dab-7141-4ee3-8d44-ecddef539328
+    name: GITLAB_PRIVATE_TOKEN
+    selector:
+    - env
+    - GITLAB_PRIVATE_TOKEN
+    value: ''
+    value_type: secret
+  - description: 你的GitLab实例URL
+    id: 9b1a4f63-b3f7-41b3-9e04-05e5011d0bf2
+    name: GITLAB_HOST
+    selector:
+    - env
+    - GITLAB_HOST
+    value: http://10.99.0.202:8000/
+    value_type: string
+  features:
+    file_upload:
+      allowed_file_extensions:
+      - .JPG
+      - .JPEG
+      - .PNG
+      - .GIF
+      - .WEBP
+      - .SVG
+      allowed_file_types:
+      - image
+      allowed_file_upload_methods:
+      - local_file
+      - remote_url
+      enabled: false
+      fileUploadConfig:
+        audio_file_size_limit: 50
+        batch_count_limit: 5
+        file_size_limit: 15
+        image_file_size_limit: 10
+        video_file_size_limit: 100
+        workflow_file_upload_limit: 10
+      image:
+        enabled: false
+        number_limits: 3
+        transfer_methods:
+        - local_file
+        - remote_url
+      number_limits: 3
+    opening_statement: ''
+    retriever_resource:
+      enabled: true
+    sensitive_word_avoidance:
+      enabled: false
+    speech_to_text:
+      enabled: false
+    suggested_questions: []
+    suggested_questions_after_answer:
+      enabled: false
+    text_to_speech:
+      enabled: false
+      language: ''
+      voice: ''
+  graph:
+    edges:
+    - data:
+        isInLoop: false
+        sourceType: http-request
+        targetType: code
+      id: 1762420495727-source-1762420789275-target
+      selected: false
+      source: '1762420495727'
+      sourceHandle: source
+      target: '1762420789275'
+      targetHandle: target
+      type: custom
+      zIndex: 0
+    - data:
+        isInLoop: false
+        sourceType: code
+        targetType: iteration
+      id: 1762420789275-source-1762421110286-target
+      selected: false
+      source: '1762420789275'
+      sourceHandle: source
+      target: '1762421110286'
+      targetHandle: target
+      type: custom
+      zIndex: 0
+    - data:
+        isInIteration: true
+        isInLoop: false
+        iteration_id: '1762421110286'
+        sourceType: code
+        targetType: http-request
+      id: 1762423384411-source-1762422064174-target
+      selected: false
+      source: '1762423384411'
+      sourceHandle: source
+      target: '1762422064174'
+      targetHandle: target
+      type: custom
+      zIndex: 1002
+    - data:
+        isInLoop: false
+        sourceType: start
+        targetType: http-request
+      id: 1762419870890-source-1762420495727-target
+      selected: false
+      source: '1762419870890'
+      sourceHandle: source
+      target: '1762420495727'
+      targetHandle: target
+      type: custom
+      zIndex: 0
+    - data:
+        isInIteration: true
+        isInLoop: false
+        iteration_id: '1762421110286'
+        sourceType: iteration-start
+        targetType: code
+      id: 1762421110286start-source-1762494161570-target
+      selected: false
+      source: 1762421110286start
+      sourceHandle: source
+      target: '1762494161570'
+      targetHandle: target
+      type: custom
+      zIndex: 1002
+    - data:
+        isInIteration: true
+        isInLoop: false
+        iteration_id: '1762421110286'
+        sourceType: code
+        targetType: code
+      id: 1762501518916-source-1762423384411-target
+      selected: false
+      source: '1762501518916'
+      sourceHandle: source
+      target: '1762423384411'
+      targetHandle: target
+      type: custom
+      zIndex: 1002
+    - data:
+        isInIteration: true
+        isInLoop: false
+        iteration_id: '1762421110286'
+        sourceType: code
+        targetType: http-request
+      id: 1762494161570-source-1762502626824-target
+      selected: false
+      source: '1762494161570'
+      sourceHandle: source
+      target: '1762502626824'
+      targetHandle: target
+      type: custom
+      zIndex: 1002
+    - data:
+        isInIteration: true
+        isInLoop: false
+        iteration_id: '1762421110286'
+        sourceType: http-request
+        targetType: code
+      id: 1762502626824-source-1762503687571-target
+      selected: false
+      source: '1762502626824'
+      sourceHandle: source
+      target: '1762503687571'
+      targetHandle: target
+      type: custom
+      zIndex: 1002
+    - data:
+        isInIteration: true
+        isInLoop: false
+        iteration_id: '1762421110286'
+        sourceType: code
+        targetType: code
+      id: 1762503687571-source-1762501518916-target
+      selected: false
+      source: '1762503687571'
+      sourceHandle: source
+      target: '1762501518916'
+      targetHandle: target
+      type: custom
+      zIndex: 1002
+    - data:
+        isInIteration: true
+        isInLoop: false
+        iteration_id: '1762421110286'
+        sourceType: http-request
+        targetType: code
+      id: 1762422064174-source-1762504962624-target
+      selected: false
+      source: '1762422064174'
+      sourceHandle: source
+      target: '1762504962624'
+      targetHandle: target
+      type: custom
+      zIndex: 1002
+    - data:
+        isInIteration: false
+        isInLoop: false
+        sourceType: iteration
+        targetType: code
+      id: 1762421110286-source-1762505161514-target
+      selected: false
+      source: '1762421110286'
+      sourceHandle: source
+      target: '1762505161514'
+      targetHandle: target
+      type: custom
+      zIndex: 0
+    - data:
+        isInIteration: false
+        isInLoop: false
+        sourceType: code
+        targetType: end
+      id: 1762505161514-source-1762481152145-target
+      selected: false
+      source: '1762505161514'
+      sourceHandle: source
+      target: '1762481152145'
+      targetHandle: target
+      type: custom
+      zIndex: 0
+    - data:
+        isInIteration: true
+        isInLoop: false
+        iteration_id: '1762421110286'
+        sourceType: http-request
+        targetType: code
+      id: 1762506479898017625064798984-source-1762506479898017625064798985-target
+      selected: false
+      source: '1762506479898017625064798984'
+      sourceHandle: source
+      target: '1762506479898017625064798985'
+      targetHandle: target
+      type: custom
+      zIndex: 1002
+    - data:
+        isInIteration: true
+        isInLoop: false
+        iteration_id: '1762421110286'
+        sourceType: http-request
+        targetType: code
+      id: 1762506479898017625064798980-source-1762506479898017625064798986-target
+      selected: false
+      source: '1762506479898017625064798980'
+      sourceHandle: source
+      target: '1762506479898017625064798986'
+      targetHandle: target
+      type: custom
+      zIndex: 1002
+    - data:
+        isInLoop: false
+        sourceType: code
+        targetType: iteration
+      id: 1762420789275-source-17625064798980-target
+      selected: false
+      source: '1762420789275'
+      sourceHandle: source
+      target: '17625064798980'
+      targetHandle: target
+      type: custom
+      zIndex: 0
+    - data:
+        isInIteration: true
+        isInLoop: false
+        iteration_id: '17625064798980'
+        sourceType: iteration-start
+        targetType: http-request
+      id: 1762506479898start-source-1762506479898017625064798984-target
+      selected: false
+      source: 1762506479898start
+      sourceHandle: source
+      target: '1762506479898017625064798984'
+      targetHandle: target
+      type: custom
+      zIndex: 1002
+    - data:
+        isInIteration: true
+        isInLoop: false
+        iteration_id: '17625064798980'
+        sourceType: code
+        targetType: if-else
+      id: 1762506479898017625064798985-source-1762507207115-target
+      selected: false
+      source: '1762506479898017625064798985'
+      sourceHandle: source
+      target: '1762507207115'
+      targetHandle: target
+      type: custom
+      zIndex: 1002
+    - data:
+        isInIteration: true
+        isInLoop: false
+        iteration_id: '17625064798980'
+        sourceType: if-else
+        targetType: http-request
+      id: 1762507207115-true-1762506479898017625064798980-target
+      selected: false
+      source: '1762507207115'
+      sourceHandle: 'true'
+      target: '1762506479898017625064798980'
+      targetHandle: target
+      type: custom
+      zIndex: 1002
+    - data:
+        isInLoop: false
+        sourceType: iteration
+        targetType: code
+      id: 17625064798980-source-1762505161514-target
+      selected: false
+      source: '17625064798980'
+      sourceHandle: source
+      target: '1762505161514'
+      targetHandle: target
+      type: custom
+      zIndex: 0
+    - data:
+        isInIteration: true
+        isInLoop: false
+        iteration_id: '1762421110286'
+        sourceType: code
+        targetType: http-request
+      id: 1762507885628017625078856282-source-1762507885628017625078856284-target
+      selected: false
+      source: '1762507885628017625078856282'
+      sourceHandle: source
+      target: '1762507885628017625078856284'
+      targetHandle: target
+      type: custom
+      zIndex: 1002
+    - data:
+        isInIteration: true
+        isInLoop: false
+        iteration_id: '1762421110286'
+        sourceType: http-request
+        targetType: code
+      id: 1762507885628017625078856284-source-1762507885628017625078856285-target
+      selected: false
+      source: '1762507885628017625078856284'
+      sourceHandle: source
+      target: '1762507885628017625078856285'
+      targetHandle: target
+      type: custom
+      zIndex: 1002
+    - data:
+        isInIteration: true
+        isInLoop: false
+        iteration_id: '1762421110286'
+        sourceType: code
+        targetType: code
+      id: 1762507885628017625078856285-source-1762507885628017625078856283-target
+      selected: false
+      source: '1762507885628017625078856285'
+      sourceHandle: source
+      target: '1762507885628017625078856283'
+      targetHandle: target
+      type: custom
+      zIndex: 1002
+    - data:
+        isInIteration: true
+        isInLoop: false
+        iteration_id: '1762421110286'
+        sourceType: http-request
+        targetType: code
+      id: 1762507885628017625078856280-source-1762507885628017625078856286-target
+      selected: false
+      source: '1762507885628017625078856280'
+      sourceHandle: source
+      target: '1762507885628017625078856286'
+      targetHandle: target
+      type: custom
+      zIndex: 1002
+    - data:
+        isInLoop: false
+        sourceType: code
+        targetType: iteration
+      id: 1762420789275-source-17625078856280-target
+      selected: false
+      source: '1762420789275'
+      sourceHandle: source
+      target: '17625078856280'
+      targetHandle: target
+      type: custom
+      zIndex: 0
+    - data:
+        isInIteration: true
+        isInLoop: false
+        iteration_id: '17625078856280'
+        sourceType: http-request
+        targetType: code
+      id: 17625079738360-source-17625079690680-target
+      selected: false
+      source: '17625079738360'
+      sourceHandle: source
+      target: '17625079690680'
+      targetHandle: target
+      type: custom
+      zIndex: 1002
+    - data:
+        isInIteration: true
+        isInLoop: false
+        iteration_id: '17625078856280'
+        sourceType: iteration-start
+        targetType: code
+      id: 1762507885628start-source-1762507885628017625078856282-target
+      selected: false
+      source: 1762507885628start
+      sourceHandle: source
+      target: '1762507885628017625078856282'
+      targetHandle: target
+      type: custom
+      zIndex: 1002
+    - data:
+        isInIteration: true
+        isInLoop: false
+        iteration_id: '17625078856280'
+        sourceType: code
+        targetType: if-else
+      id: 17625079690680-source-17625079642380-target
+      selected: false
+      source: '17625079690680'
+      sourceHandle: source
+      target: '17625079642380'
+      targetHandle: target
+      type: custom
+      zIndex: 1002
+    - data:
+        isInIteration: true
+        isInLoop: false
+        iteration_id: '17625078856280'
+        sourceType: if-else
+        targetType: http-request
+      id: 17625079642380-true-1762507885628017625078856280-target
+      selected: false
+      source: '17625079642380'
+      sourceHandle: 'true'
+      target: '1762507885628017625078856280'
+      targetHandle: target
+      type: custom
+      zIndex: 1002
+    - data:
+        isInIteration: true
+        isInLoop: false
+        iteration_id: '17625078856280'
+        sourceType: if-else
+        targetType: http-request
+      id: 17625079642380-false-1762509211520-target
+      selected: false
+      source: '17625079642380'
+      sourceHandle: 'false'
+      target: '1762509211520'
+      targetHandle: target
+      type: custom
+      zIndex: 1002
+    - data:
+        isInIteration: true
+        isInLoop: false
+        iteration_id: '17625078856280'
+        sourceType: code
+        targetType: code
+      id: 1762507885628017625078856283-source-1762507885628017625078856281-target
+      selected: false
+      source: '1762507885628017625078856283'
+      sourceHandle: source
+      target: '1762507885628017625078856281'
+      targetHandle: target
+      type: custom
+      zIndex: 1002
+    - data:
+        isInIteration: true
+        isInLoop: false
+        iteration_id: '17625078856280'
+        sourceType: code
+        targetType: http-request
+      id: 1762507885628017625078856281-source-17625079738360-target
+      selected: false
+      source: '1762507885628017625078856281'
+      sourceHandle: source
+      target: '17625079738360'
+      targetHandle: target
+      type: custom
+      zIndex: 1002
+    - data:
+        isInIteration: true
+        isInLoop: false
+        iteration_id: '17625078856280'
+        sourceType: http-request
+        targetType: code
+      id: 1762509211520-source-1762511000005-target
+      source: '1762509211520'
+      sourceHandle: source
+      target: '1762511000005'
+      targetHandle: target
+      type: custom
+      zIndex: 1002
+    - data:
+        isInIteration: true
+        isInLoop: false
+        iteration_id: '17625078856280'
+        sourceType: code
+        targetType: variable-aggregator
+      id: 1762507885628017625078856286-source-1762511178036-target
+      source: '1762507885628017625078856286'
+      sourceHandle: source
+      target: '1762511178036'
+      targetHandle: target
+      type: custom
+      zIndex: 1002
+    - data:
+        isInIteration: true
+        isInLoop: false
+        iteration_id: '17625078856280'
+        sourceType: code
+        targetType: variable-aggregator
+      id: 1762511000005-source-1762511178036-target
+      source: '1762511000005'
+      sourceHandle: source
+      target: '1762511178036'
+      targetHandle: target
+      type: custom
+      zIndex: 1002
+    - data:
+        isInLoop: false
+        sourceType: iteration
+        targetType: code
+      id: 17625078856280-source-1762505161514-target
+      source: '17625078856280'
+      sourceHandle: source
+      target: '1762505161514'
+      targetHandle: target
+      type: custom
+      zIndex: 0
+    nodes:
+    - data:
+        desc: Webhook 触发
+        selected: false
+        title: Webhook 触发
+        type: start
+        variables:
+        - default: ''
+          hint: ''
+          label: merge_commit_sha
+          max_length: 256
+          options: []
+          placeholder: ''
+          required: true
+          type: text-input
+          variable: merge_commit_sha
+        - default: ''
+          hint: ''
+          label: project_id
+          max_length: 48
+          options: []
+          placeholder: ''
+          required: true
+          type: number
+          variable: project_id
+      height: 141
+      id: '1762419870890'
+      position:
+        x: 678
+        y: -90
+      positionAbsolute:
+        x: 678
+        y: -90
+      selected: false
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 241
+    - data:
+        authorization:
+          config:
+            api_key: '{{#env.GITLAB_PRIVATE_TOKEN#}}'
+            header: PRIVATE-TOKEN
+            type: custom
+          type: api-key
+        body:
+          data: []
+          type: none
+        desc: 2. 获取文件变更集
+        headers: ''
+        method: get
+        params: ''
+        retry_config:
+          max_retries: 3
+          retry_enabled: true
+          retry_interval: 100
+        selected: false
+        ssl_verify: false
+        timeout:
+          max_connect_timeout: 0
+          max_read_timeout: 0
+          max_write_timeout: 0
+        title: get_diffs
+        type: http-request
+        url: '{{#env.GITLAB_HOST#}}/api/v4/projects/{{#1762419870890.project_id#}}/repository/commits/{{#1762419870890.merge_commit_sha#}}/diff'
+        variables: []
+      height: 238
+      id: '1762420495727'
+      position:
+        x: 1101
+        y: -90
+      positionAbsolute:
+        x: 1101
+        y: -90
+      selected: false
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 241
+    - data:
+        code: " function main({ diffs_raw, extensions }) {\n              const diffs\
+          \ = JSON.parse(diffs_raw);\n              const allowedExts = extensions.split(',').map(ext\
+          \ => ext.trim());\n              \n              const added_files = [];\n\
+          \              const modified_files = [];\n              const deleted_files\
+          \ = [];\n\n              for (const file of diffs) {\n                const\
+          \ hasAllowedExt = (path) => allowedExts.some(ext => path.endsWith(ext));\n\
+          \n                if (file.deleted_file) {\n                  if (hasAllowedExt(file.old_path))\
+          \ {\n                    deleted_files.push(file.old_path);\n          \
+          \        }\n                } else if (file.new_file) {\n              \
+          \    if (hasAllowedExt(file.new_path)) {\n                    added_files.push(file.new_path);\n\
+          \                  }\n                } else if (file.renamed_file) {\n\
+          \                  if (hasAllowedExt(file.old_path)) {\n               \
+          \     deleted_files.push(file.old_path);\n                  }\n        \
+          \          if (hasAllowedExt(file.new_path)) {\n                    added_files.push(file.new_path);\n\
+          \                  }\n                } else { // Modified file\n      \
+          \            if (hasAllowedExt(file.new_path)) {\n                    modified_files.push(file.new_path);\n\
+          \                  }\n                }\n              }\n\n           \
+          \   return { added_files, modified_files, deleted_files };\n           \
+          \ }\n"
+        code_language: javascript
+        desc: 3. 过滤与分类文件
+        outputs:
+          added_files:
+            children: null
+            type: array[string]
+          deleted_files:
+            children: null
+            type: array[string]
+          modified_files:
+            children: null
+            type: array[string]
+        selected: false
+        title: filter_and_categorize
+        type: code
+        variables:
+        - value_selector:
+          - '1762420495727'
+          - body
+          value_type: string
+          variable: diffs_raw
+        - value_selector:
+          - env
+          - ALLOWED_FILE_EXTENSIONS
+          value_type: string
+          variable: extensions
+      height: 79
+      id: '1762420789275'
+      position:
+        x: 1496
+        y: -90
+      positionAbsolute:
+        x: 1496
+        y: -90
+      selected: false
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 241
+    - data:
+        desc: 循环处理新增文件
+        error_handle_mode: terminated
+        height: 328
+        is_parallel: false
+        iterator_input_type: array[string]
+        iterator_selector:
+        - '1762420789275'
+        - added_files
+        output_selector:
+        - '1762504962624'
+        - increment
+        output_type: array[number]
+        parallel_nums: 10
+        selected: false
+        start_node_id: 1762421110286start
+        title: iterate_added_files
+        type: iteration
+        width: 3064
+      height: 328
+      id: '1762421110286'
+      position:
+        x: 2756.7239983842233
+        y: -450.10129844554416
+      positionAbsolute:
+        x: 2756.7239983842233
+        y: -450.10129844554416
+      selected: false
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 3064
+      zIndex: 1
+    - data:
+        desc: ''
+        isInIteration: true
+        selected: false
+        title: ''
+        type: iteration-start
+      draggable: false
+      height: 48
+      id: 1762421110286start
+      parentId: '1762421110286'
+      position:
+        x: 24
+        y: 68
+      positionAbsolute:
+        x: 2780.7239983842233
+        y: -382.10129844554416
+      selectable: false
+      sourcePosition: right
+      targetPosition: left
+      type: custom-iteration-start
+      width: 44
+      zIndex: 1002
+    - data:
+        authorization:
+          config:
+            api_key: '{{#env.DIFY_API_KEY#}}'
+            type: bearer
+          type: api-key
+        body:
+          data:
+          - id: key-value-439
+            key: ''
+            type: text
+            value: '{{#1762423384411.api_payload#}}'
+          type: json
+        desc: 将文件数据发送到 Dify 并创建新文档
+        headers: ''
+        isInIteration: true
+        isInLoop: false
+        iteration_id: '1762421110286'
+        method: post
+        params: ''
+        retry_config:
+          max_retries: 3
+          retry_enabled: true
+          retry_interval: 100
+        selected: false
+        ssl_verify: true
+        timeout:
+          max_connect_timeout: 0
+          max_read_timeout: 0
+          max_write_timeout: 0
+        title: create_dify_document
+        type: http-request
+        url: '{{#env.DIFY_HOST#}}/v1/datasets/{{#env.KNOWLEDGE_BASE_ID#}}/document/create_by_text'
+        variables: []
+      height: 204
+      id: '1762422064174'
+      parentId: '1762421110286'
+      position:
+        x: 1779
+        y: 65
+      positionAbsolute:
+        x: 4535.723998384223
+        y: -385.10129844554416
+      selected: false
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 241
+      zIndex: 1002
+    - data:
+        code: "function main({ file_path, file_content }) {\n  // 构建 Dify API 请求体，不包含任何自定义元数据\n\
+          \  const payload = {\n    name: file_path, // 使用完整路径作为唯一名称\n    text: file_content,\n\
+          \    indexing_technique: 'high_quality',\n    process_rule: {\n      mode:\
+          \ 'automatic',\n      rules: {\n        pre_processing_rules: [\n      \
+          \    { id: 'remove_extra_spaces', enabled: true },\n          { id: 'remove_urls_emails',\
+          \ enabled: false }\n        ],\n        segmentation: {\n          separator:\
+          \ '\\n',\n          max_tokens: 800 // 根据您的需求调整\n        }\n      }\n  \
+          \  }\n  };\n\n  return {\n    api_payload: payload\n  };\n}"
+        code_language: javascript
+        isInIteration: true
+        isInLoop: false
+        iteration_id: '1762421110286'
+        outputs:
+          api_payload:
+            children: null
+            type: object
+        selected: false
+        title: prepare_create_payload
+        type: code
+        variables:
+        - value_selector:
+          - '1762421110286'
+          - item
+          value_type: string
+          variable: file_path
+        - value_selector:
+          - '1762501518916'
+          - clean_content
+          value_type: string
+          variable: file_content
+      height: 51
+      id: '1762423384411'
+      parentId: '1762421110286'
+      position:
+        x: 1419
+        y: 73
+      positionAbsolute:
+        x: 4175.723998384223
+        y: -377.10129844554416
+      selected: false
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 241
+      zIndex: 1002
+    - data:
+        outputs:
+        - value_selector:
+          - '1762505161514'
+          - summary
+          value_type: string
+          variable: summary
+        selected: false
+        title: 结束
+        type: end
+      height: 87
+      id: '1762481152145'
+      position:
+        x: 7219.196275248139
+        y: 280.78976007693285
+      positionAbsolute:
+        x: 7219.196275248139
+        y: 280.78976007693285
+      selected: false
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 241
+    - data:
+        code: "function main({ host, project_id, file_path, commit_sha }) {\n  //\
+          \ 在 Javascript 中对文件路径进行正确的 URL 编码\n  const encoded_path = encodeURIComponent(file_path);\n\
+          \  \n  // 使用模板字符串构建完整、干净的 URL\n  const final_url = `${host}api/v4/projects/${project_id}/repository/files/${encoded_path}?ref=${commit_sha}`;\n\
+          \  \n  console.log(\"构建完成的 URL:\", final_url);\n\n  return {\n    final_url:\
+          \ final_url\n  };\n}"
+        code_language: javascript
+        desc: 生成gitlab文件地址
+        isInIteration: true
+        isInLoop: false
+        iteration_id: '1762421110286'
+        outputs:
+          final_url:
+            children: null
+            type: string
+        selected: false
+        title: build_file_url
+        type: code
+        variables:
+        - value_selector:
+          - env
+          - GITLAB_HOST
+          value_type: string
+          variable: host
+        - value_selector:
+          - '1762419870890'
+          - project_id
+          value_type: number
+          variable: project_id
+        - value_selector:
+          - '1762421110286'
+          - item
+          value_type: string
+          variable: file_path
+        - value_selector:
+          - '1762419870890'
+          - merge_commit_sha
+          value_type: string
+          variable: commit_sha
+      height: 79
+      id: '1762494161570'
+      parentId: '1762421110286'
+      position:
+        x: 122
+        y: 66
+      positionAbsolute:
+        x: 2878.7239983842233
+        y: -384.10129844554416
+      selected: false
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 241
+      zIndex: 1002
+    - data:
+        code: "\nfunction main({ raw_content }) {\n  // 正则表达式，用于匹配并捕获 YAML Front Matter\n\
+          \  const frontMatterRegex = /^---\\s*([\\s\\S]*?)\\s*---/;\n  const match\
+          \ = raw_content.match(frontMatterRegex);\n\n  let metadata = {};\n  let\
+          \ clean_content = raw_content;\n\n  if (match) {\n    // 如果匹配成功，match[1]\
+          \ 就是捕获到的 YAML 字符串\n    const yamlString = match[1];\n    // 移除原始内容中的 Front\
+          \ Matter 部分，得到纯净的 Markdown\n    clean_content = raw_content.replace(frontMatterRegex,\
+          \ '').trim();\n\n    // --- 手动解析简单的 YAML ---\n    // Dify 代码节点环境无内置库，我们手动解析\
+          \ key: value 格式\n    const lines = yamlString.split('\\n');\n    for (const\
+          \ line of lines) {\n      const parts = line.split(':');\n      if (parts.length\
+          \ >= 2) {\n        const key = parts[0].trim();\n        // 将剩余部分重新组合为值，并去除首尾的空格和引号\n\
+          \        const value = parts.slice(1).join(':').trim().replace(/^['\"]|['\"\
+          ]$/g, '');\n        if (key && value) {\n          metadata[key] = value;\n\
+          \        }\n      }\n    }\n  }\n\n  return {\n    metadata_object: metadata,\n\
+          \    clean_content: clean_content\n  };\n}"
+        code_language: javascript
+        desc: 解析元数据(Front Matter)
+        isInIteration: true
+        isInLoop: false
+        iteration_id: '1762421110286'
+        outputs:
+          clean_content:
+            children: null
+            type: string
+          metadata_object:
+            children: null
+            type: object
+        selected: false
+        title: parse_front_matter
+        type: code
+        variables:
+        - value_selector:
+          - '1762503687571'
+          - content
+          value_type: string
+          variable: raw_content
+      height: 79
+      id: '1762501518916'
+      parentId: '1762421110286'
+      position:
+        x: 1119
+        y: 73
+      positionAbsolute:
+        x: 3875.7239983842233
+        y: -377.10129844554416
+      selected: false
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 241
+      zIndex: 1002
+    - data:
+        authorization:
+          config:
+            api_key: '{{#env.GITLAB_PRIVATE_TOKEN#}}'
+            header: PRIVATE-TOKEN
+            type: custom
+          type: api-key
+        body:
+          data: []
+          type: none
+        headers: ''
+        isInIteration: true
+        isInLoop: false
+        iteration_id: '1762421110286'
+        method: get
+        params: ''
+        retry_config:
+          max_retries: 3
+          retry_enabled: true
+          retry_interval: 100
+        selected: false
+        ssl_verify: false
+        timeout:
+          max_connect_timeout: 0
+          max_read_timeout: 0
+          max_write_timeout: 0
+        title: Request Comtent
+        type: http-request
+        url: '{{#1762494161570.final_url#}}'
+        variables: []
+      height: 123
+      id: '1762502626824'
+      parentId: '1762421110286'
+      position:
+        x: 423
+        y: 66
+      positionAbsolute:
+        x: 3179.7239983842233
+        y: -384.10129844554416
+      selected: false
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 241
+      zIndex: 1002
+    - data:
+        code: "function main({ raw }) {\n    // 1. 解析 JSON 字符串\n    const parsed =\
+          \ JSON.parse(raw);\n    \n    // 2. 对 content 进行 Base64 解码，得到二进制字符串\n  \
+          \  const binaryString = atob(parsed.content);\n    \n    // 3. 将二进制字符串转换为字节数组\
+          \ (Uint8Array)\n    const len = binaryString.length;\n    const bytes =\
+          \ new Uint8Array(len);\n    for (let i = 0; i < len; i++) {\n        bytes[i]\
+          \ = binaryString.charCodeAt(i);\n    }\n    \n    // 4. 使用 TextDecoder 将字节数组按\
+          \ UTF-8 格式解码为字符串\n    const decoder = new TextDecoder('utf-8');\n    const\
+          \ decodedContent = decoder.decode(bytes);\n    \n    return {\n        content:\
+          \ decodedContent\n    };\n}"
+        code_language: javascript
+        isInIteration: true
+        isInLoop: false
+        iteration_id: '1762421110286'
+        outputs:
+          content:
+            children: null
+            type: string
+        selected: false
+        title: Parse File Content
+        type: code
+        variables:
+        - value_selector:
+          - '1762502626824'
+          - body
+          value_type: string
+          variable: raw
+      height: 51
+      id: '1762503687571'
+      parentId: '1762421110286'
+      position:
+        x: 819
+        y: 73
+      positionAbsolute:
+        x: 3575.7239983842233
+        y: -377.10129844554416
+      selected: false
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 241
+      zIndex: 1002
+    - data:
+        code: "function main({ status_code }) {\n  // Dify API 成功创建的 status_code 通常是\
+          \ 200 或 201\n  // 我们将计数值初始化为 0\n  let count = 0;\n\n  if (status_code >=\
+          \ 200 && status_code < 300) {\n    // 如果状态码是 2xx，代表成功，我们将计数值设为 1\n    count\
+          \ = 1;\n    console.log(\"文档创建成功，计为 1\");\n  } else {\n    // 如果失败，计数值保持为\
+          \ 0\n    console.log(\"文档创建失败，计为 0\");\n  }\n\n  return {\n    // 输出一个计数值，成功为\
+          \ 1，失败为 0\n    increment: count\n  };\n}"
+        code_language: javascript
+        isInIteration: true
+        isInLoop: false
+        iteration_id: '1762421110286'
+        outputs:
+          increment:
+            children: null
+            type: number
+        selected: false
+        title: check_creation_success
+        type: code
+        variables:
+        - value_selector:
+          - '1762422064174'
+          - status_code
+          value_type: number
+          variable: status_code
+      height: 51
+      id: '1762504962624'
+      parentId: '1762421110286'
+      position:
+        x: 2336.999985615842
+        y: 74.00000169225393
+      positionAbsolute:
+        x: 5093.723984000066
+        y: -376.1012967532902
+      selected: false
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 241
+      zIndex: 1002
+    - data:
+        code: "function main({ add_counts_array, update_result_object, delete_counts_array\
+          \ }) {\n  // 1. 安全校验：确保所有输入都是有效的数组\n  if (!Array.isArray(add_counts_array)\
+          \ || !Array.isArray(update_result_object) || !Array.isArray(delete_counts_array))\
+          \ {\n    const error_message = \"无法进行汇总，一个或多个输入不是有效的数组格式。\";\n    console.error(error_message);\n\
+          \    return { summary: error_message };\n  }\n  \n  // 2. 计算“纯新增”流程中成功创建的文件数量\n\
+          \  const total_added_from_new = add_counts_array.reduce((sum, current) =>\
+          \ sum + current, 0);\n\n  // 3. 计算“删除”流程中成功删除的文件数量\n  const total_deleted\
+          \ = delete_counts_array.reduce((sum, current) => sum + current, 0);\n\n\
+          \  // 4. 计算“更新”流程中，分别有多少文件被“更新”和“创建”\n  let total_updated = 0;\n  let total_added_from_modify\
+          \ = 0;\n  \n  // 遍历更新流程的结果数组\n  for (const result of update_result_object)\
+          \ {\n    // 累加 'updated' 键的值，如果键不存在则加 0\n    total_updated += result.updated\
+          \ || 0;\n    // 累加 'created' 键的值，如果键不存在则加 0\n    total_added_from_modify\
+          \ += result.created || 0;\n  }\n\n  // 5. 计算最终的总新增数量\n  const final_total_added\
+          \ = total_added_from_new + total_added_from_modify;\n\n  // 6. 构建最终的、包含所有信息的汇总文本\n\
+          \  const summary_text = `本次同步完成：新增 ${final_total_added} 个文件，更新 ${total_updated}\
+          \ 个文件，删除 ${total_deleted} 个文件。`;\n  \n  // 7. 在日志中打印汇总信息，便于调试\n  console.log(summary_text);\n\
+          \n  // 8. 返回结构化的数据和汇总文本\n  return {\n    summary: summary_text,\n    total_added:\
+          \ final_total_added,\n    total_updated: total_updated,\n    total_deleted:\
+          \ total_deleted\n  };\n}"
+        code_language: javascript
+        outputs:
+          summary:
+            children: null
+            type: string
+          total_added:
+            children: null
+            type: number
+          total_deleted:
+            children: null
+            type: number
+          total_updated:
+            children: null
+            type: number
+        selected: false
+        title: summarize_results
+        type: code
+        variables:
+        - value_selector:
+          - '1762421110286'
+          - output
+          value_type: array[number]
+          variable: add_counts_array
+        - value_selector:
+          - '17625064798980'
+          - output
+          value_type: array[number]
+          variable: delete_counts_array
+        - value_selector:
+          - '17625078856280'
+          - output
+          value_type: array[object]
+          variable: update_result_object
+      height: 51
+      id: '1762505161514'
+      position:
+        x: 6406.515739988117
+        y: 206.18190642591338
+      positionAbsolute:
+        x: 6406.515739988117
+        y: 206.18190642591338
+      selected: false
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 241
+    - data:
+        desc: 循环处理新增文件
+        error_handle_mode: terminated
+        height: 328
+        is_parallel: false
+        iterator_input_type: array[string]
+        iterator_selector:
+        - '1762420789275'
+        - deleted_files
+        output_selector:
+        - '1762506479898017625064798986'
+        - deleted
+        output_type: array[number]
+        parallel_nums: 10
+        selected: false
+        start_node_id: 1762506479898start
+        title: 'iterate_deleted_files '
+        type: iteration
+        width: 3064
+      height: 328
+      id: '17625064798980'
+      position:
+        x: 1874.5682725185006
+        y: 1057.3752647736408
+      positionAbsolute:
+        x: 1874.5682725185006
+        y: 1057.3752647736408
+      selected: false
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 3064
+      zIndex: 1
+    - data:
+        authorization:
+          config:
+            api_key: '{{#env.DIFY_API_KEY#}}'
+            type: bearer
+          type: api-key
+        body:
+          data:
+          - id: key-value-439
+            key: ''
+            type: text
+            value: ''
+          type: json
+        desc: 将文件数据发送到 Dify 并创建新文档
+        headers: ''
+        isInIteration: true
+        isInLoop: false
+        iteration_id: '17625064798980'
+        method: delete
+        params: ''
+        retry_config:
+          max_retries: 3
+          retry_enabled: true
+          retry_interval: 100
+        selected: true
+        ssl_verify: true
+        timeout:
+          max_connect_timeout: 0
+          max_read_timeout: 0
+          max_write_timeout: 0
+        title: delete_dify_document
+        type: http-request
+        url: '{{#env.DIFY_HOST#}}/v1/datasets/{{#env.KNOWLEDGE_BASE_ID#}}/documents/{{#1762506479898017625064798985.document_id#}}'
+        variables: []
+      height: 223
+      id: '1762506479898017625064798980'
+      parentId: '17625064798980'
+      position:
+        x: 1779
+        y: 65
+      positionAbsolute:
+        x: 3653.5682725185006
+        y: 1122.3752647736408
+      selected: true
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 241
+      zIndex: 1002
+    - data:
+        authorization:
+          config:
+            api_key: '{{#env.DIFY_API_KEY#}}'
+            header: ''
+            type: bearer
+          type: api-key
+        body:
+          data: []
+          type: none
+        desc: 按文件名搜索文档
+        headers: ''
+        isInIteration: true
+        isInLoop: false
+        iteration_id: '17625064798980'
+        method: get
+        params: keyword:{{#17625064798980.item#}}
+        retry_config:
+          max_retries: 3
+          retry_enabled: true
+          retry_interval: 100
+        selected: false
+        ssl_verify: false
+        timeout:
+          max_connect_timeout: 0
+          max_read_timeout: 0
+          max_write_timeout: 0
+        title: search_dify_document
+        type: http-request
+        url: '{{#env.DIFY_HOST#}}/v1/datasets/{{#env.KNOWLEDGE_BASE_ID#}}/documents'
+        variables: []
+      height: 188
+      id: '1762506479898017625064798984'
+      parentId: '17625064798980'
+      position:
+        x: 324.5811292263147
+        y: 85.63621483964357
+      positionAbsolute:
+        x: 2199.1494017448153
+        y: 1143.0114796132843
+      selected: false
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 241
+      zIndex: 1002
+    - data:
+        code: "function main({ search_response, file_path_to_find }) {\n  let document_id\
+          \ = null;\n  let document_exists = false;\n\n  try {\n    const response\
+          \ = JSON.parse(search_response);\n    \n    // 确保响应中有 data 数组\n    if (response\
+          \ && Array.isArray(response.data)) {\n      // 在返回的文档列表中，查找 name 与文件路径完全匹配的那个\n\
+          \      const found_doc = response.data.find(doc => doc.name === file_path_to_find);\n\
+          \      \n      if (found_doc) {\n        // 如果找到了精确匹配的文档\n        document_id\
+          \ = found_doc.id;\n        document_exists = true;\n        console.log(`找到匹配文档:\
+          \ ${file_path_to_find}, ID: ${document_id}`);\n      } else {\n        console.log(`未在知识库中找到文件:\
+          \ ${file_path_to_find}`);\n      }\n    }\n  } catch (e) {\n    console.error(\"\
+          解析搜索响应失败:\", e);\n  }\n\n  return {\n    document_id: document_id,\n   \
+          \ document_exists: document_exists\n  };\n}"
+        code_language: javascript
+        desc: 检查结果并提取ID
+        isInIteration: true
+        isInLoop: false
+        iteration_id: '17625064798980'
+        outputs:
+          document_exists:
+            children: null
+            type: boolean
+          document_id:
+            children: null
+            type: string
+        selected: false
+        title: check_search_result
+        type: code
+        variables:
+        - value_selector:
+          - '1762506479898017625064798984'
+          - body
+          value_type: string
+          variable: search_response
+        - value_selector:
+          - '17625064798980'
+          - item
+          value_type: string
+          variable: file_path_to_find
+      height: 79
+      id: '1762506479898017625064798985'
+      parentId: '17625064798980'
+      position:
+        x: 819
+        y: 73
+      positionAbsolute:
+        x: 2693.5682725185006
+        y: 1130.3752647736408
+      selected: false
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 241
+      zIndex: 1002
+    - data:
+        code: "function main({ status_code }) {\n  // Dify API 成功创建的 status_code 通常是\
+          \ 200 或 201\n  // 我们将计数值初始化为 0\n  let count = 0;\n\n  if (status_code >=\
+          \ 200 && status_code < 300) {\n    // 如果状态码是 2xx，代表成功，我们将计数值设为 1\n    count\
+          \ = 1;\n    console.log(\"文档删除成功，计为 1\");\n  } else {\n    // 如果失败，计数值保持为\
+          \ 0\n    console.log(\"文档删除失败，计为 0\");\n  }\n\n  return {\n    // 输出一个计数值，成功为\
+          \ 1，失败为 0\n    deleted: count\n  };\n}"
+        code_language: javascript
+        isInIteration: true
+        isInLoop: false
+        iteration_id: '17625064798980'
+        outputs:
+          deleted:
+            children: null
+            type: number
+        selected: false
+        title: check_delete_success
+        type: code
+        variables:
+        - value_selector:
+          - '1762506479898017625064798980'
+          - status_code
+          value_type: number
+          variable: status_code
+      height: 51
+      id: '1762506479898017625064798986'
+      parentId: '17625064798980'
+      position:
+        x: 2507
+        y: 54
+      positionAbsolute:
+        x: 4381.568272518501
+        y: 1111.3752647736408
+      selected: false
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 241
+      zIndex: 1002
+    - data:
+        desc: ''
+        isInIteration: true
+        selected: false
+        title: ''
+        type: iteration-start
+      draggable: false
+      height: 48
+      id: 1762506479898start
+      parentId: '17625064798980'
+      position:
+        x: 24
+        y: 68
+      positionAbsolute:
+        x: 1898.5682725185006
+        y: 1125.3752647736408
+      selectable: false
+      sourcePosition: right
+      targetPosition: left
+      type: custom-iteration-start
+      width: 44
+      zIndex: 1002
+    - data:
+        cases:
+        - case_id: 'true'
+          conditions:
+          - comparison_operator: is
+            id: 3f76fed0-af0f-4904-99fe-6b7c43b874c5
+            value: true
+            varType: boolean
+            variable_selector:
+            - '1762506479898017625064798985'
+            - document_exists
+          id: 'true'
+          logical_operator: and
+        desc: ' 文档是否存在'
+        isInIteration: true
+        isInLoop: false
+        iteration_id: '17625064798980'
+        selected: false
+        title: if_document_exists
+        type: if-else
+      height: 151
+      id: '1762507207115'
+      parentId: '17625064798980'
+      position:
+        x: 1120
+        y: 73
+      positionAbsolute:
+        x: 2994.5682725185006
+        y: 1130.3752647736408
+      selected: false
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 241
+      zIndex: 1002
+    - data:
+        desc: 循环处理新增文件
+        error_handle_mode: terminated
+        height: 545.6913004529727
+        is_parallel: false
+        iterator_input_type: array[string]
+        iterator_selector:
+        - '1762420789275'
+        - modified_files
+        output_selector:
+        - '1762511178036'
+        - output
+        output_type: array[object]
+        parallel_nums: 10
+        selected: false
+        start_node_id: 1762507885628start
+        title: iterate_updated_files
+        type: iteration
+        width: 3064
+      height: 546
+      id: '17625078856280'
+      position:
+        x: 2436.5082766134146
+        y: 64.72104923882353
+      positionAbsolute:
+        x: 2436.5082766134146
+        y: 64.72104923882353
+      selected: false
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 3064
+      zIndex: 1
+    - data:
+        authorization:
+          config:
+            api_key: '{{#env.DIFY_API_KEY#}}'
+            type: bearer
+          type: api-key
+        body:
+          data:
+          - id: key-value-642
+            key: ''
+            type: text
+            value: '{{#1762507885628017625078856281.api_payload#}}'
+          type: json
+        desc: 将文件数据发送到 Dify 并创建新文档
+        headers: ''
+        isInIteration: true
+        isInLoop: false
+        iteration_id: '17625078856280'
+        method: post
+        params: ''
+        retry_config:
+          max_retries: 3
+          retry_enabled: true
+          retry_interval: 100
+        selected: false
+        ssl_verify: true
+        timeout:
+          max_connect_timeout: 0
+          max_read_timeout: 0
+          max_write_timeout: 0
+        title: create_dify_document
+        type: http-request
+        url: '{{#env.DIFY_HOST#}}/v1/datasets/{{#env.KNOWLEDGE_BASE_ID#}}/document/create_by_text'
+        variables: []
+      height: 204
+      id: '1762507885628017625078856280'
+      parentId: '17625078856280'
+      position:
+        x: 1813.922825113243
+        y: 88.81101712266576
+      positionAbsolute:
+        x: 4250.431101726657
+        y: 153.53206636148929
+      selected: false
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 241
+      zIndex: 1002
+    - data:
+        code: "function main({ file_path, file_content }) {\n  // 构建 Dify API 请求体，不包含任何自定义元数据\n\
+          \  const payload = {\n    name: file_path, // 使用完整路径作为唯一名称\n    text: file_content,\n\
+          \    indexing_technique: 'high_quality',\n    process_rule: {\n      mode:\
+          \ 'automatic',\n      rules: {\n        pre_processing_rules: [\n      \
+          \    { id: 'remove_extra_spaces', enabled: true },\n          { id: 'remove_urls_emails',\
+          \ enabled: false }\n        ],\n        segmentation: {\n          separator:\
+          \ '\\n',\n          max_tokens: 800 // 根据您的需求调整\n        }\n      }\n  \
+          \  }\n  };\n\n  return {\n    api_payload: payload\n  };\n}"
+        code_language: javascript
+        isInIteration: true
+        isInLoop: false
+        iteration_id: '17625078856280'
+        outputs:
+          api_payload:
+            children: null
+            type: object
+        selected: false
+        title: prepare_create_payload
+        type: code
+        variables:
+        - value_selector:
+          - '17625078856280'
+          - item
+          value_type: string
+          variable: file_path
+        - value_selector:
+          - '1762507885628017625078856283'
+          - clean_content
+          value_type: string
+          variable: file_content
+      height: 51
+      id: '1762507885628017625078856281'
+      parentId: '17625078856280'
+      position:
+        x: 1465.0346331038204
+        y: 65
+      positionAbsolute:
+        x: 3901.542909717235
+        y: 129.72104923882353
+      selected: false
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 241
+      zIndex: 1002
+    - data:
+        code: "function main({ host, project_id, file_path, commit_sha }) {\n  //\
+          \ 在 Javascript 中对文件路径进行正确的 URL 编码\n  const encoded_path = encodeURIComponent(file_path);\n\
+          \  \n  // 使用模板字符串构建完整、干净的 URL\n  const final_url = `${host}api/v4/projects/${project_id}/repository/files/${encoded_path}?ref=${commit_sha}`;\n\
+          \  \n  console.log(\"构建完成的 URL:\", final_url);\n\n  return {\n    final_url:\
+          \ final_url\n  };\n}"
+        code_language: javascript
+        desc: 生成gitlab文件地址
+        isInIteration: true
+        isInLoop: false
+        iteration_id: '17625078856280'
+        outputs:
+          final_url:
+            children: null
+            type: string
+        selected: false
+        title: build_file_url
+        type: code
+        variables:
+        - value_selector:
+          - env
+          - GITLAB_HOST
+          value_type: string
+          variable: host
+        - value_selector:
+          - '1762419870890'
+          - project_id
+          value_type: number
+          variable: project_id
+        - value_selector:
+          - '17625078856280'
+          - item
+          value_type: string
+          variable: file_path
+        - value_selector:
+          - '1762419870890'
+          - merge_commit_sha
+          value_type: string
+          variable: commit_sha
+      height: 79
+      id: '1762507885628017625078856282'
+      parentId: '17625078856280'
+      position:
+        x: 183.90864451893094
+        y: 69.76220342453314
+      positionAbsolute:
+        x: 2620.4169211323456
+        y: 134.48325266335667
+      selected: false
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 241
+      zIndex: 1002
+    - data:
+        code: "\nfunction main({ raw_content }) {\n  // 正则表达式，用于匹配并捕获 YAML Front Matter\n\
+          \  const frontMatterRegex = /^---\\s*([\\s\\S]*?)\\s*---/;\n  const match\
+          \ = raw_content.match(frontMatterRegex);\n\n  let metadata = {};\n  let\
+          \ clean_content = raw_content;\n\n  if (match) {\n    // 如果匹配成功，match[1]\
+          \ 就是捕获到的 YAML 字符串\n    const yamlString = match[1];\n    // 移除原始内容中的 Front\
+          \ Matter 部分，得到纯净的 Markdown\n    clean_content = raw_content.replace(frontMatterRegex,\
+          \ '').trim();\n\n    // --- 手动解析简单的 YAML ---\n    // Dify 代码节点环境无内置库，我们手动解析\
+          \ key: value 格式\n    const lines = yamlString.split('\\n');\n    for (const\
+          \ line of lines) {\n      const parts = line.split(':');\n      if (parts.length\
+          \ >= 2) {\n        const key = parts[0].trim();\n        // 将剩余部分重新组合为值，并去除首尾的空格和引号\n\
+          \        const value = parts.slice(1).join(':').trim().replace(/^['\"]|['\"\
+          ]$/g, '');\n        if (key && value) {\n          metadata[key] = value;\n\
+          \        }\n      }\n    }\n  }\n\n  return {\n    metadata_object: metadata,\n\
+          \    clean_content: clean_content\n  };\n}"
+        code_language: javascript
+        desc: 解析元数据(Front Matter)
+        isInIteration: true
+        isInLoop: false
+        iteration_id: '17625078856280'
+        outputs:
+          clean_content:
+            children: null
+            type: string
+          metadata_object:
+            children: null
+            type: object
+        selected: false
+        title: parse_front_matter
+        type: code
+        variables:
+        - value_selector:
+          - '1762507885628017625078856285'
+          - content
+          value_type: string
+          variable: raw_content
+      height: 79
+      id: '1762507885628017625078856283'
+      parentId: '17625078856280'
+      position:
+        x: 1165.8970544602494
+        y: 68.17480228302213
+      positionAbsolute:
+        x: 3602.405331073664
+        y: 132.89585152184566
+      selected: false
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 241
+      zIndex: 1002
+    - data:
+        authorization:
+          config:
+            api_key: '{{#env.GITLAB_PRIVATE_TOKEN#}}'
+            header: PRIVATE-TOKEN
+            type: custom
+          type: api-key
+        body:
+          data: []
+          type: none
+        headers: ''
+        isInIteration: true
+        isInLoop: false
+        iteration_id: '17625078856280'
+        method: get
+        params: ''
+        retry_config:
+          max_retries: 3
+          retry_enabled: true
+          retry_interval: 100
+        selected: false
+        ssl_verify: false
+        timeout:
+          max_connect_timeout: 0
+          max_read_timeout: 0
+          max_write_timeout: 0
+        title: Request Comtent
+        type: http-request
+        url: '{{#1762507885628017625078856282.final_url#}}'
+        variables: []
+      height: 123
+      id: '1762507885628017625078856284'
+      parentId: '17625078856280'
+      position:
+        x: 539.1290182667931
+        y: 71.34960456604426
+      positionAbsolute:
+        x: 2975.6372948802077
+        y: 136.0706538048678
+      selected: false
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 241
+      zIndex: 1002
+    - data:
+        code: "function main({ raw }) {\n    // 1. 解析 JSON 字符串\n    const parsed =\
+          \ JSON.parse(raw);\n    \n    // 2. 对 content 进行 Base64 解码，得到二进制字符串\n  \
+          \  const binaryString = atob(parsed.content);\n    \n    // 3. 将二进制字符串转换为字节数组\
+          \ (Uint8Array)\n    const len = binaryString.length;\n    const bytes =\
+          \ new Uint8Array(len);\n    for (let i = 0; i < len; i++) {\n        bytes[i]\
+          \ = binaryString.charCodeAt(i);\n    }\n    \n    // 4. 使用 TextDecoder 将字节数组按\
+          \ UTF-8 格式解码为字符串\n    const decoder = new TextDecoder('utf-8');\n    const\
+          \ decodedContent = decoder.decode(bytes);\n    \n    return {\n        content:\
+          \ decodedContent\n    };\n}"
+        code_language: javascript
+        isInIteration: true
+        isInLoop: false
+        iteration_id: '17625078856280'
+        outputs:
+          content:
+            children: null
+            type: string
+        selected: false
+        title: Parse File Content
+        type: code
+        variables:
+        - value_selector:
+          - '1762507885628017625078856284'
+          - body
+          value_type: string
+          variable: raw
+      height: 51
+      id: '1762507885628017625078856285'
+      parentId: '17625078856280'
+      position:
+        x: 875.7321971622696
+        y: 69.76220342453314
+      positionAbsolute:
+        x: 3312.240473775684
+        y: 134.48325266335667
+      selected: false
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 241
+      zIndex: 1002
+    - data:
+        code: "function main({ status_code }) {\n  let result = { updated: 0, created:\
+          \ 0 };\n  // PUT 成功的状态码通常是 200\n  if (status_code >= 200 && status_code\
+          \ < 300) {\n    result.updated = 1;\n    console.log(\"文档更新成功，计为 'updated:\
+          \ 1'\");\n  } else {\n    console.log(\"文档更新失败\");\n  }\n  return { result_object:\
+          \ result };\n}"
+        code_language: javascript
+        isInIteration: true
+        isInLoop: false
+        iteration_id: '17625078856280'
+        outputs:
+          result_object:
+            children: null
+            type: object
+        selected: false
+        title: check_creation_success
+        type: code
+        variables:
+        - value_selector:
+          - '1762507885628017625078856280'
+          - status_code
+          value_type: number
+          variable: status_code
+      height: 51
+      id: '1762507885628017625078856286'
+      parentId: '17625078856280'
+      position:
+        x: 2289.37795137051
+        y: 97.81101881491986
+      positionAbsolute:
+        x: 4725.886227983925
+        y: 162.5320680537434
+      selected: false
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 241
+      zIndex: 1002
+    - data:
+        desc: ''
+        isInIteration: true
+        selected: false
+        title: ''
+        type: iteration-start
+      draggable: false
+      height: 48
+      id: 1762507885628start
+      parentId: '17625078856280'
+      position:
+        x: 24
+        y: 68
+      positionAbsolute:
+        x: 2460.5082766134146
+        y: 132.72104923882353
+      selectable: false
+      sourcePosition: right
+      targetPosition: left
+      type: custom-iteration-start
+      width: 44
+      zIndex: 1002
+    - data:
+        cases:
+        - case_id: 'true'
+          conditions:
+          - comparison_operator: is
+            id: 3f76fed0-af0f-4904-99fe-6b7c43b874c5
+            value: true
+            varType: boolean
+            variable_selector:
+            - '17625079690680'
+            - document_exists
+          id: 'true'
+          logical_operator: and
+        desc: ' 文档是否存在'
+        isInIteration: true
+        isInLoop: false
+        selected: false
+        title: if_document_exists
+        type: if-else
+      height: 151
+      id: '17625079642380'
+      parentId: '17625078856280'
+      position:
+        x: 989.7889965547479
+        y: 266.12598858488934
+      positionAbsolute:
+        x: 3426.2972731681625
+        y: 330.84703782371287
+      selected: false
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 241
+      zIndex: 1002
+    - data:
+        code: "function main({ search_response, file_path_to_find }) {\n  let document_id\
+          \ = null;\n  let document_exists = false;\n\n  try {\n    const response\
+          \ = JSON.parse(search_response);\n    \n    // 确保响应中有 data 数组\n    if (response\
+          \ && Array.isArray(response.data)) {\n      // 在返回的文档列表中，查找 name 与文件路径完全匹配的那个\n\
+          \      const found_doc = response.data.find(doc => doc.name === file_path_to_find);\n\
+          \      \n      if (found_doc) {\n        // 如果找到了精确匹配的文档\n        document_id\
+          \ = found_doc.id;\n        document_exists = true;\n        console.log(`找到匹配文档:\
+          \ ${file_path_to_find}, ID: ${document_id}`);\n      } else {\n        console.log(`未在知识库中找到文件:\
+          \ ${file_path_to_find}`);\n      }\n    }\n  } catch (e) {\n    console.error(\"\
+          解析搜索响应失败:\", e);\n  }\n\n  return {\n    document_id: document_id,\n   \
+          \ document_exists: document_exists\n  };\n}"
+        code_language: javascript
+        desc: 检查结果并提取ID
+        isInIteration: true
+        isInLoop: false
+        outputs:
+          document_exists:
+            children: null
+            type: boolean
+          document_id:
+            children: null
+            type: string
+        selected: false
+        title: check_search_result
+        type: code
+        variables:
+        - value_selector:
+          - '17625079738360'
+          - body
+          value_type: string
+          variable: search_response
+        - value_selector:
+          - '17625078856280'
+          - item
+          value_type: string
+          variable: file_path_to_find
+      height: 79
+      id: '17625079690680'
+      parentId: '17625078856280'
+      position:
+        x: 476.76224336172663
+        y: 291.3700750134442
+      positionAbsolute:
+        x: 2913.2705199751413
+        y: 356.0911242522677
+      selected: false
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 241
+      zIndex: 1002
+    - data:
+        authorization:
+          config:
+            api_key: '{{#env.DIFY_API_KEY#}}'
+            header: ''
+            type: bearer
+          type: api-key
+        body:
+          data: []
+          type: none
+        desc: 按文件名搜索文档
+        headers: ''
+        isInIteration: true
+        isInLoop: false
+        method: get
+        params: keyword:{{#17625078856280.item#}}
+        retry_config:
+          max_retries: 3
+          retry_enabled: true
+          retry_interval: 100
+        selected: false
+        ssl_verify: false
+        timeout:
+          max_connect_timeout: 0
+          max_read_timeout: 0
+          max_write_timeout: 0
+        title: search_dify_document
+        type: http-request
+        url: '{{#env.DIFY_HOST#}}/v1/datasets/{{#env.KNOWLEDGE_BASE_ID#}}/documents'
+        variables: []
+      height: 188
+      id: '17625079738360'
+      parentId: '17625078856280'
+      position:
+        x: 138.88820470132669
+        y: 273.57322054719907
+      positionAbsolute:
+        x: 2575.3964813147413
+        y: 338.2942697860226
+      selected: false
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 241
+      zIndex: 1002
+    - data:
+        authorization:
+          config:
+            api_key: '{{#env.DIFY_API_KEY#}}'
+            type: bearer
+          type: api-key
+        body:
+          data:
+          - id: key-value-977
+            key: ''
+            type: text
+            value: '{{#1762507885628017625078856281.api_payload#}}'
+          type: json
+        desc: 执行更新操作
+        headers: ''
+        isInIteration: true
+        isInLoop: false
+        iteration_id: '17625078856280'
+        method: post
+        params: ''
+        retry_config:
+          max_retries: 3
+          retry_enabled: true
+          retry_interval: 100
+        selected: false
+        ssl_verify: true
+        timeout:
+          max_connect_timeout: 0
+          max_read_timeout: 0
+          max_write_timeout: 0
+        title: update_dify_document
+        type: http-request
+        url: '{{#env.DIFY_HOST#}}/v1/datasets/{{#env.KNOWLEDGE_BASE_ID#}}/documents{{#17625079690680.document_id#}}'
+        variables: []
+      height: 223
+      id: '1762509211520'
+      parentId: '17625078856280'
+      position:
+        x: 1542.211072150762
+        y: 299.5164981699505
+      positionAbsolute:
+        x: 3978.7193487641766
+        y: 364.23754740877405
+      selected: false
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 241
+      zIndex: 1002
+    - data:
+        code: "function main({ status_code }) {\n  let result = { updated: 0, created:\
+          \ 0 };\n  // PUT 成功的状态码通常是 200\n  if (status_code >= 200 && status_code\
+          \ < 300) {\n    result.updated = 1;\n    console.log(\"文档更新成功，计为 'updated:\
+          \ 1'\");\n  } else {\n    console.log(\"文档更新失败\");\n  }\n  return { result_object:\
+          \ result };\n}"
+        code_language: javascript
+        isInIteration: true
+        isInLoop: false
+        iteration_id: '17625078856280'
+        outputs:
+          result_object:
+            children: null
+            type: object
+        selected: false
+        title: generate_update_count
+        type: code
+        variables:
+        - value_selector:
+          - '1762509211520'
+          - status_code
+          value_type: number
+          variable: status_code
+      height: 51
+      id: '1762511000005'
+      parentId: '17625078856280'
+      position:
+        x: 2271.8093803587467
+        y: 331.2645210001716
+      positionAbsolute:
+        x: 4708.317656972162
+        y: 395.98557023899514
+      selected: false
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 241
+      zIndex: 1002
+    - data:
+        desc: 收集更新/创建结果
+        isInIteration: true
+        isInLoop: false
+        iteration_id: '17625078856280'
+        output_type: object
+        selected: false
+        title: 变量聚合器
+        type: variable-aggregator
+        variables:
+        - - '1762507885628017625078856286'
+          - result_object
+        - - '1762511000005'
+          - result_object
+      height: 161
+      id: '1762511178036'
+      parentId: '17625078856280'
+      position:
+        x: 2660.223601596997
+        y: 200.99209301313834
+      positionAbsolute:
+        x: 5096.731878210412
+        y: 265.71314225196187
+      selected: false
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 241
+      zIndex: 1002
+    viewport:
+      x: -1583.7186576931977
+      y: -26.78973596947253
+      zoom: 0.6299604894123334
+  rag_pipeline_variables: []

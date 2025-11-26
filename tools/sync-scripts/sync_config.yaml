@@ -1,0 +1,49 @@
+# GitLab到Dify知识库同步配置文件
+gitlab:
+  # GitLab实例URL
+  host: "http://10.99.0.202:8000/"
+  # GitLab私有令牌 (CI/CD中通过环境变量设置)
+  private_token: "GITLAB_TOKEN_PLACEHOLDER"
+  # 允许同步的文件扩展名
+  allowed_file_extensions:
+    - ".md"
+    - ".markdown"
+
+dify:
+  # Dify主机地址
+  host: "http://10.99.0.202"
+  # Dify API密钥 (CI/CD中通过环境变量设置)
+  api_key: "DIFY_API_KEY_PLACEHOLDER"
+  # 知识库ID (CI/CD中通过环境变量设置)
+  knowledge_base_id: "DIFY_KB_ID_PLACEHOLDER"
+  # 文档索引技术 high_quality 或 economy
+  indexing_technique: "high_quality"
+  # 文档处理规则
+  process_rule:
+    mode: "automatic"
+    rules:
+      pre_processing_rules:
+        - id: "remove_extra_spaces"
+          enabled: true
+        - id: "remove_urls_emails"
+          enabled: false
+      segmentation:
+        separator: "##"
+        max_tokens: 4000
+
+# 同步设置
+sync:
+  # 是否启用元数据解析
+  enable_metadata: true
+  # 全量同步时是否清理已删除的文件（从GitLab中删除但在Dify中仍存在的文件）
+  cleanup_deleted: false
+  # GitLab API分页大小
+  page_size: 100
+  # 请求超时时间（秒）
+  timeout: 60
+  # 重试次数
+  max_retries: 3
+  # 重试间隔（秒）
+  retry_interval: 10
+  # SSL验证 - 如果使用自签名证书，设置为 false
+  verify_ssl: false

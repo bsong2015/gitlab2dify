@@ -1,0 +1,35 @@
+stages:
+  - sync_to_dify
+
+sync_to_dify:
+  stage: sync_to_dify
+  image: python:3.9-slim
+  
+  tags:
+    - test
+
+  # 支持手动触发或分支推送触发
+  rules:
+    - if: '$CI_PIPELINE_SOURCE == "web"'        # 手动触发
+    - if: '$CI_COMMIT_BRANCH == "main"'         # main 分支推送自动触发增量同步
+
+  before_script:
+    - echo "正在安装 Python 依赖 (使用清华镜像源)..."
+    - pip install -i https://pypi.tuna.tsinghua.edu.cn/simple requests pyyaml
+    # 替换配置文件中的占位符
+    - sed -i "s|GITLAB_TOKEN_PLACEHOLDER|$GITLAB_PRIVATE_TOKEN|g" tools/sync-scripts/sync_config.yaml
+    - sed -i "s|DIFY_API_KEY_PLACEHOLDER|$DIFY_API_KEY|g" tools/sync-scripts/sync_config.yaml
+    - sed -i "s|DIFY_KB_ID_PLACEHOLDER|$DIFY_KNOWLEDGE_BASE_ID|g" tools/sync-scripts/sync_config.yaml
+
+  script:
+    - echo "开始执行 GitLab 到 Dify 知识库同步..."
+    - cd tools/sync-scripts
+    # 根据 CI_SYNC_MODE 变量决定同步模式
+    - |
+      if [ "$CI_SYNC_MODE" = "full" ]; then
+        echo "执行全量同步"
+        python gitlab_dify_sync.py --mode full --project-id $CI_PROJECT_ID --branch main --config sync_config.yaml
+      else
+        echo "执行增量同步"
+        python gitlab_dify_sync.py --mode incremental --project-id $CI_PROJECT_ID --commit-sha $CI_COMMIT_SHA --config sync_config.yaml
+      fi
